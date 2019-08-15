@@ -13,7 +13,7 @@ export const WRONG_EMAIL = "WRONG_EMAIL";
 
 const SequelizeStore = connectSequelize(ExpressSession.Store);
 const store = new SequelizeStore({
-  db: sequelizeInstance,
+  db: sequelizeInstance
 });
 store.sync();
 
@@ -25,7 +25,7 @@ auth.use(
     saveUninitialized: false,
     rolling: true,
     cookie: { maxAge: 86400000, secure: false },
-    store,
+    store
   })
 );
 
@@ -36,12 +36,12 @@ passport.use(
   new Strategy(
     {
       usernameField: "email",
-      passwordField: "password",
+      passwordField: "password"
     },
     async (email, password, cb) => {
       try {
         const user = await User.findByPk(email, {
-          raw: true,
+          raw: true
         });
 
         if (!user) {

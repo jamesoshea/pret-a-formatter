@@ -15,7 +15,7 @@ export const User = <UserStatic>sequelizeInstance.define(
   {
     email: { type: DataTypes.STRING, primaryKey: true },
     password: { type: DataTypes.STRING },
-    name: { type: DataTypes.STRING, defaultValue: "default" },
+    name: { type: DataTypes.STRING, defaultValue: "default" }
   },
   { tableName: "users", timestamps: false }
 );
@@ -25,7 +25,7 @@ User.sync({ force: false }).then(async () => {
     await User.create({
       email: "asd@asd.com",
       password: "asd",
-      name: "Default",
+      name: "Default"
     });
   } catch {}
 });

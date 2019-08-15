@@ -5,7 +5,7 @@ const common = Router();
 
 common.use(
   morgan("combined", {
-    skip: req => req.url === "/api/data/tracking",
+    skip: req => req.url === "/api/data/tracking"
   })
 );
 
