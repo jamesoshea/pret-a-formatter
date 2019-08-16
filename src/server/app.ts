@@ -1,10 +1,13 @@
-import express from "express";
+import dotenv from 'dotenv'
+import express from 'express'
 
-import common from "./middleware/common";
+import common from './middleware/common'
+
+dotenv.config()
 
 export default () => {
-  const app = express();
+  const app = express()
 
-  app.use(common);
-  return app;
-};
+  app.use(common)
+  return app
+}

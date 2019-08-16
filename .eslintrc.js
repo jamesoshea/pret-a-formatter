@@ -4,7 +4,7 @@ module.exports = {
     es6: true,
     node: true
   },
-  extends: ["standard", "prettier"],
+  extends: ["standard"],
   globals: {
     Atomics: "readonly",
     SharedArrayBuffer: "readonly"

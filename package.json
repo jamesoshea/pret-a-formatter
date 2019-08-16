@@ -8,8 +8,13 @@
     "start": "next start"
   },
   "dependencies": {
+    "@types/dotenv": "^6.1.1",
+    "@types/prettier": "^1.18.2",
+    "@zeit/next-sass": "^1.0.1",
+    "aws-sdk": "^2.511.0",
     "axios": "^0.19.0",
     "connect-session-sequelize": "^6.0.0",
+    "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "express-session": "^1.16.2",
     "morgan": "^1.9.1",
@@ -17,9 +22,14 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "pg": "^7.12.0",
+    "prettier": "^1.18.2",
     "react": "16.9.0",
     "react-dom": "16.9.0",
-    "sequelize": "^5.13.0"
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.87.3",
+    "sequelize": "^5.13.0",
+    "styled-components": "^4.3.2",
+    "webpack": "^4.39.2"
   },
   "devDependencies": {
     "@types/bluebird": "^3.5.27",
@@ -40,6 +50,8 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-standard": "^4.0.0",
-    "typescript": "^3.5.3"
+    "file-loader": "^4.2.0",
+    "typescript": "^3.5.3",
+    "url-loader": "^2.1.0"
   }
 }
