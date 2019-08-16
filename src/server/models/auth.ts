@@ -20,14 +20,14 @@ export const User = <UserStatic>sequelizeInstance.define(
   { tableName: 'users', timestamps: false }
 )
 
-User.sync({ force: false }).then(async () => {
-  try {
-    await User.create({
-      email: 'iamveryrad@gmail.com',
-      password: 'password',
-      name: 'James'
-    })
-  } catch (err) {
-    console.log(err)
-  }
-})
+// User.sync({ force: false }).then(async () => {
+//   try {
+//     await User.create({
+//       email: 'iamveryrad@gmail.com',
+//       password: 'password',
+//       name: 'James'
+//     })
+//   } catch (err) {
+//     console.log(err)
+//   }
+// })
