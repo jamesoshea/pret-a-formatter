@@ -1,12 +1,12 @@
-import { Router } from "express";
-import morgan from "morgan";
+import { Router } from 'express'
+import morgan from 'morgan'
 
-const common = Router();
+const common = Router()
 
 common.use(
-  morgan("combined", {
-    skip: req => req.url === "/api/data/tracking"
+  morgan('combined', {
+    skip: req => req.url === '/api/data/tracking'
   })
-);
+)
 
-export default common;
+export default common

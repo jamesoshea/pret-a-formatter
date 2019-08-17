@@ -14,19 +14,18 @@ const HeaderContainer = styled.div`
   width: 100%;
 `
 
-export default () => {
+export default (props: any) => {
+  const { updateCurrentUser, user } = props
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const [user, setUser] = useState<undefined | UserModel>(undefined)
-  const [data, setData] = useState('')
   useEffect(() => {
     ;(async () => {
       const response = await axios.post<UserModel>(
         'http://localhost:3000/api/auth/current_user'
       )
       if (response.status === 200) {
-        setUser(response.data)
+        updateCurrentUser(response.data)
       }
     })()
   }, [])
@@ -34,7 +33,7 @@ export default () => {
     if (user)
       (async () => {
         const response = await axios.post<string>('http://localhost:3000/api')
-        setData(response.data)
+        updateCurrentUser(response.data)
       })()
   }, [user])
 
@@ -67,8 +66,8 @@ export default () => {
               </Form>
               <Button
                 content="Login"
-                onClick={async ev => {
-                  ev.preventDefault()
+                onClick={async e => {
+                  e.preventDefault()
                   const response = await axios.post<UserModel>(
                     'http://localhost:3000/api/auth/login',
                     { email, password }
@@ -76,7 +75,7 @@ export default () => {
                   if (response.status === 200) {
                     setEmail('')
                     setPassword('')
-                    setUser(response.data)
+                    updateCurrentUser(response.data)
                   } else {
                     window.alert(response.data)
                   }
@@ -90,7 +89,7 @@ export default () => {
           content="Logout"
           onClick={async () => {
             await axios.post('http://localhost:3000/api/auth/logout')
-            setUser(undefined)
+            updateCurrentUser(null)
           }}
         />
       )}
