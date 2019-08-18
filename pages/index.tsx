@@ -1,4 +1,3 @@
-// @ts-ignore
 import axios from 'axios'
 import React, { useState } from 'react'
 import 'semantic-ui-css/semantic.min.css'

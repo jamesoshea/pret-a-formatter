@@ -1,10 +1,19 @@
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { RefObject } from 'react'
 import { Button as SemanticButton } from 'semantic-ui-react'
 
-class FileInput extends React.Component {
-  constructor() {
-    super()
+type FileInputProps = {
+  inputRef: RefObject<any>
+  onFileChanged: Function
+}
+
+type FileInputState = {
+  fileInput: RefObject<any>
+}
+
+class FileInput extends React.Component<FileInputProps, FileInputState> {
+  constructor(props: FileInputProps) {
+    super(props)
     this.state = {
       fileInput: React.createRef()
     }
@@ -17,8 +26,8 @@ class FileInput extends React.Component {
   handleFileChange() {
     const files = Array.from(this.state.fileInput.current.files)
     const formData = new FormData()
-    files.forEach((file, i) => {
-      formData.append(i, file)
+    files.forEach((file: any, i) => {
+      formData.append(i.toString(), file)
     })
     this.props.onFileChanged(formData)
   }
