@@ -47,25 +47,16 @@ export default function Index() {
   const [user, setUser] = useState({})
   const [formattedFile, setFormattedFile] = useState('')
   const [formattedFileName, setFormattedFileName] = useState('')
-  const updateCurrentUser = (newUser: Object) => {
-    setUser(newUser)
-  }
-  const updateCurrentFileName = (newFileName: string) => {
-    setFormattedFileName(newFileName)
-  }
-  const updateCurrentFile = (newFile: string) => {
-    setFormattedFile(newFile)
-  }
 
   return (
-    <UserProvider value={{ user, updateCurrentUser }}>
+    <UserProvider value={{ user, setUser }}>
       <UserConsumer>
         {(props: any) => (
           <>
-            <Header user={user} updateCurrentUser={updateCurrentUser} />
+            <Header user={user} updateCurrentUser={setUser} />
             <Upload
-              setFormattedFile={updateCurrentFile}
-              setFormattedFileName={updateCurrentFileName}
+              setFormattedFile={setFormattedFile}
+              setFormattedFileName={setFormattedFileName}
             />
             <Snippet file={formattedFile} fileName={formattedFileName} />
           </>
