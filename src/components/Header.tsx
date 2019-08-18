@@ -10,25 +10,17 @@ const HeaderContainer = styled.div`
   background: #333;
   display: flex;
   justify-content: space-between;
+  line-height: 36px;
+  margin-bottom: 15px;
   padding: 10px;
   width: 100%;
 `
 
 export default (props: any) => {
-  const { updateCurrentUser, user } = props
+  const { user, updateCurrentUser } = props
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  useEffect(() => {
-    ;(async () => {
-      const response = await axios.post<UserModel>(
-        'http://localhost:3000/api/auth/current_user'
-      )
-      if (response.status === 200) {
-        updateCurrentUser(response.data)
-      }
-    })()
-  }, [])
   useEffect(() => {
     if (user)
       (async () => {
@@ -39,7 +31,9 @@ export default (props: any) => {
 
   return (
     <HeaderContainer>
-      <Header color="teal">prêt-à-formatter</Header>
+      <Header color="grey" inverted size="large">
+        pàf
+      </Header>
       {!user ? (
         <Modal trigger={<Button>Log In</Button>}>
           <Modal.Header>Log In</Modal.Header>
