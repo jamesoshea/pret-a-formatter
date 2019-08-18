@@ -1,8 +1,16 @@
+'use strict'
+
 import { S3GetObjectPromisified } from '../../../src/utils/promisified-functions'
 
-// example
-// http://localhost:3000/api/files/02816c183fb89f037fb0c00f451f309f-1563730623677-formatted
-export default async (req: any, res: any) => {
+export default async (req, res) => {
+  if (req.method === 'GET') {
+    get(req, res)
+    return
+  }
+  res.status(405).send('Method Not Allowed')
+}
+
+const get = async (req, res) => {
   try {
     const data = await S3GetObjectPromisified(
       `${req.query.fileId.replace('-formatted', '')}.js`

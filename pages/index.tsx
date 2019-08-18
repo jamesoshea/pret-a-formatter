@@ -1,19 +1,32 @@
+// @ts-ignore
 import axios from 'axios'
 import React, { useState } from 'react'
 import 'semantic-ui-css/semantic.min.css'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { Header as SemanticHeader } from 'semantic-ui-react'
 import Header from '../src/components/Header'
 import FileInput from '../src/components/FileInput'
 import { UserProvider, UserConsumer } from '../src/context/UserContext'
 
-const Upload = () => {
-  const [formattedFile, setFormattedFile] = useState('')
-  const [formattedFileName, setFormattedFileName] = useState('')
+const Snippet = (props: any) => {
+  const { file, fileName } = props
+
+  if (!file) return null
+  return (
+    <>
+      <SemanticHeader>{fileName}</SemanticHeader>
+      <SyntaxHighlighter language="javascript">{file}</SyntaxHighlighter>
+    </>
+  )
+}
+
+const Upload = (props: any) => {
+  const { setFormattedFile, setFormattedFileName } = props
   const fileInput = React.createRef()
 
   const uploadFile = (formData: any) => {
-    console.log(formData)
     axios
-      .post(`api/files/add`, formData, {
+      .post('http://localhost:8000/upload', formData, {
         headers: {
           Accept: 'application/json',
           Encoding: 'multipart/form-data'
@@ -24,8 +37,7 @@ const Upload = () => {
         setFormattedFile(res.data.file)
       })
       .catch(err => {
-        setFormattedFileName('')
-        setFormattedFile('')
+        console.log(err)
       })
   }
 
@@ -33,9 +45,17 @@ const Upload = () => {
 }
 
 export default function Index() {
-  let user = {}
+  const [user, setUser] = useState({})
+  const [formattedFile, setFormattedFile] = useState('')
+  const [formattedFileName, setFormattedFileName] = useState('')
   const updateCurrentUser = (newUser: Object) => {
-    user = newUser
+    setUser(newUser)
+  }
+  const updateCurrentFileName = (newFileName: string) => {
+    setFormattedFileName(newFileName)
+  }
+  const updateCurrentFile = (newFile: string) => {
+    setFormattedFile(newFile)
   }
 
   return (
@@ -44,7 +64,11 @@ export default function Index() {
         {(props: any) => (
           <>
             <Header user={user} updateCurrentUser={updateCurrentUser} />
-            <Upload />
+            <Upload
+              setFormattedFile={updateCurrentFile}
+              setFormattedFileName={updateCurrentFileName}
+            />
+            <Snippet file={formattedFile} fileName={formattedFileName} />
           </>
         )}
       </UserConsumer>
