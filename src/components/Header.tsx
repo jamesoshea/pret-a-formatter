@@ -21,14 +21,6 @@ export default (props: any) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  useEffect(() => {
-    if (user)
-      (async () => {
-        const response = await axios.post<string>('http://localhost:3000/api')
-        updateCurrentUser(response.data)
-      })()
-  }, [user])
-
   return (
     <HeaderContainer>
       <Header color="grey" inverted size="large">
@@ -69,6 +61,7 @@ export default (props: any) => {
                   if (response.status === 200) {
                     setEmail('')
                     setPassword('')
+                    debugger
                     updateCurrentUser(response.data)
                   } else {
                     window.alert(response.data)
@@ -79,13 +72,20 @@ export default (props: any) => {
           </Modal.Content>
         </Modal>
       ) : (
-        <Button
-          content="Logout"
-          onClick={async () => {
-            await axios.post('http://localhost:3000/api/auth/logout')
-            updateCurrentUser(null)
-          }}
-        />
+        <>
+          <div style={{ display: 'flex' }}>
+            <Header as="h6" color="grey" inverted>
+              {user.email}
+            </Header>
+            <Button
+              content="Logout"
+              onClick={async () => {
+                await axios.post('http://localhost:3000/api/auth/logout')
+                updateCurrentUser(null)
+              }}
+            />
+          </div>
+        </>
       )}
     </HeaderContainer>
   )

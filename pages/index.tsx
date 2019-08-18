@@ -44,16 +44,18 @@ const Upload = (props: any) => {
 }
 
 export default function Index() {
-  const [user, setUser] = useState({})
   const [formattedFile, setFormattedFile] = useState('')
   const [formattedFileName, setFormattedFileName] = useState('')
 
   return (
-    <UserProvider value={{ user, setUser }}>
+    <UserProvider>
       <UserConsumer>
-        {(props: any) => (
+        {(userContext: any) => (
           <>
-            <Header user={user} updateCurrentUser={setUser} />
+            <Header
+              user={userContext.user}
+              updateCurrentUser={userContext.setUser}
+            />
             <Upload
               setFormattedFile={setFormattedFile}
               setFormattedFileName={setFormattedFileName}

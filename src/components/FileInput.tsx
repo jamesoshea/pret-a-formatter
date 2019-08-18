@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { RefObject } from 'react'
-import { Button as SemanticButton } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 
 type FileInputProps = {
   inputRef: RefObject<any>
@@ -34,10 +34,10 @@ class FileInput extends React.Component<FileInputProps, FileInputState> {
 
   render() {
     return (
-      <div>
-        <SemanticButton>
+      <>
+        <Button>
           <label htmlFor={'fileInput'}>Upload</label>
-        </SemanticButton>
+        </Button>
         <input
           style={{ display: 'none' }}
           type="file"
@@ -45,7 +45,7 @@ class FileInput extends React.Component<FileInputProps, FileInputState> {
           ref={this.state.fileInput}
           onChange={() => this.handleFileChange()}
         />
-      </div>
+      </>
     )
   }
 }
