@@ -26,7 +26,7 @@ const Upload = (props: any) => {
 
   const uploadFile = (formData: any) => {
     axios
-      .post('http://localhost:8000/upload', formData, {
+      .post('https://pret-a-formatter.now.sh/upload', formData, {
         headers: {
           Accept: 'application/json',
           Encoding: 'multipart/form-data'
