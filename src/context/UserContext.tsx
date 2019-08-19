@@ -1,5 +1,8 @@
+import axios from 'axios'
 import PropTypes from 'prop-types'
 import React from 'react'
+
+import { UserModel } from '../../src/server/models/auth'
 
 const UserContext = React.createContext({})
 
@@ -25,7 +28,19 @@ export class UserProvider extends React.Component<
     children: PropTypes.node
   }
 
-  setUser(newUser: Object) {
+  async componentDidMount() {
+    ;(async () => {
+      try {
+        const response = await axios.post<UserModel>(
+          'http://localhost:3000/api/auth/current_user'
+        )
+        this.setUser(response.data)
+      } catch (err) {}
+    })()
+  }
+
+  setUser(newUser: Object | null) {
+    console.log(newUser)
     this.setState({
       user: newUser
     })

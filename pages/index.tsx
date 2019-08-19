@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import 'semantic-ui-css/semantic.min.css'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { Header as SemanticHeader } from 'semantic-ui-react'
+import { Container, Header as SemanticHeader } from 'semantic-ui-react'
 import Header from '../src/components/Header'
 import FileInput from '../src/components/FileInput'
 import { UserProvider, UserConsumer } from '../src/context/UserContext'
@@ -56,11 +56,13 @@ export default function Index() {
               user={userContext.user}
               updateCurrentUser={userContext.setUser}
             />
-            <Upload
-              setFormattedFile={setFormattedFile}
-              setFormattedFileName={setFormattedFileName}
-            />
-            <Snippet file={formattedFile} fileName={formattedFileName} />
+            <Container>
+              <Upload
+                setFormattedFile={setFormattedFile}
+                setFormattedFileName={setFormattedFileName}
+              />
+              <Snippet file={formattedFile} fileName={formattedFileName} />
+            </Container>
           </>
         )}
       </UserConsumer>

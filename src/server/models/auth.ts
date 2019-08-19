@@ -1,3 +1,4 @@
+import crypto from 'crypto'
 import { BuildOptions, DataTypes, Model } from 'sequelize'
 
 import { sequelizeInstance } from './'
@@ -21,10 +22,14 @@ export const User = <UserStatic>sequelizeInstance.define(
 )
 
 // User.sync({ force: false }).then(async () => {
+//   const salt = 'jfnofoihnoi'
+//   const hash = crypto.createHmac('sha512', salt)
+//   hash.update('password')
+//   const password = hash.digest('hex')
 //   try {
 //     await User.create({
 //       email: 'iamveryrad@gmail.com',
-//       password: 'password',
+//       password,
 //       name: 'James'
 //     })
 //   } catch (err) {

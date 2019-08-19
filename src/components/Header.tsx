@@ -1,13 +1,13 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
-import { Button, Form, Header, Modal } from 'semantic-ui-react'
+import { useState } from 'react'
+import { Button, Form, Header as StyledHeader, Modal } from 'semantic-ui-react'
 import styled from 'styled-components'
 
 import { UserModel } from '../../src/server/models/auth'
 
 const HeaderContainer = styled.div`
   align-items: center;
-  background: #333;
+  background: #444;
   display: flex;
   justify-content: space-between;
   line-height: 36px;
@@ -23,9 +23,9 @@ export default (props: any) => {
 
   return (
     <HeaderContainer>
-      <Header color="grey" inverted size="large">
+      <StyledHeader as="p" color="grey" inverted size="large">
         pàf
-      </Header>
+      </StyledHeader>
       {!user ? (
         <Modal trigger={<Button>Log In</Button>}>
           <Modal.Header>Log In</Modal.Header>
@@ -61,7 +61,6 @@ export default (props: any) => {
                   if (response.status === 200) {
                     setEmail('')
                     setPassword('')
-                    debugger
                     updateCurrentUser(response.data)
                   } else {
                     window.alert(response.data)
@@ -74,9 +73,9 @@ export default (props: any) => {
       ) : (
         <>
           <div style={{ display: 'flex' }}>
-            <Header as="h6" color="grey" inverted>
+            <StyledHeader as="h6" color="grey" inverted>
               {user.email}
-            </Header>
+            </StyledHeader>
             <Button
               content="Logout"
               onClick={async () => {
