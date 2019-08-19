@@ -9,7 +9,7 @@ const S3GetObjectPromisified = fileName => {
   return new Promise((resolve, reject) => {
     console.log(fileName)
     const params = {
-      Bucket: 'host-with-the-most',
+      Bucket: 'pret-a-formatter',
       Key: fileName
     }
     s3.getObject(params, (error, data) => {

@@ -33,7 +33,7 @@ export default (props: any) => {
         pàf
       </StyledHeader>
       {!user ? (
-        <>
+        <div style={{ display: 'flex' }}>
           <Modal trigger={<Button>Log In</Button>}>
             <Modal.Header>Log In</Modal.Header>
             <Modal.Content>
@@ -120,31 +120,29 @@ export default (props: any) => {
               </Modal.Description>
             </Modal.Content>
           </Modal>
-        </>
+        </div>
       ) : (
-        <>
-          <div style={{ display: 'flex' }}>
-            <StyledHeader
-              as="h6"
-              color="grey"
-              inverted
-              style={{
-                height: '36px',
-                lineHeight: '36px',
-                margin: '0 10px 0 0'
-              }}
-            >
-              {user.email}
-            </StyledHeader>
-            <Button
-              content="Logout"
-              onClick={async () => {
-                await axios.post('http://localhost:3000/api/auth/logout')
-                updateCurrentUser(null)
-              }}
-            />
-          </div>
-        </>
+        <div style={{ display: 'flex' }}>
+          <StyledHeader
+            as="h6"
+            color="grey"
+            inverted
+            style={{
+              height: '36px',
+              lineHeight: '36px',
+              margin: '0 10px 0 0'
+            }}
+          >
+            {user.email}
+          </StyledHeader>
+          <Button
+            content="Logout"
+            onClick={async () => {
+              await axios.post('http://localhost:3000/api/auth/logout')
+              updateCurrentUser(null)
+            }}
+          />
+        </div>
       )}
     </HeaderContainer>
   )

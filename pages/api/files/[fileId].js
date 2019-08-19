@@ -12,9 +12,7 @@ export default async (req, res) => {
 
 const get = async (req, res) => {
   try {
-    const data = await S3GetObjectPromisified(
-      `${req.query.fileId.replace('-formatted', '')}.js`
-    )
+    const data = await S3GetObjectPromisified(`${req.query.fileId}.js`)
     res.send(data.Body.toString())
   } catch (error) {
     console.log(new Error(error))
