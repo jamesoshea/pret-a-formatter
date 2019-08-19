@@ -11,7 +11,7 @@ app.use((req: any, res: any) => {
 
   res.sendStatus(200)
   if (req.user) {
-    console.log(`Desconexión exitosa usuario: ${req.user.name}`)
+    console.log(`User disconnected: ${req.user.name}`)
   }
 })
 

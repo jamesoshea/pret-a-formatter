@@ -33,49 +33,94 @@ export default (props: any) => {
         pàf
       </StyledHeader>
       {!user ? (
-        <Modal trigger={<Button>Log In</Button>}>
-          <Modal.Header>Log In</Modal.Header>
-          <Modal.Content>
-            <Modal.Description>
-              <Form size="small">
-                <Form.Group>
-                  <Form.Input
-                    label="Email"
-                    onChange={({ target: { value } }) => {
-                      setEmail(value)
-                    }}
-                    value={email}
-                  />
-                  <Form.Input
-                    label="Password"
-                    type="password"
-                    onChange={({ target: { value } }) => {
-                      setPassword(value)
-                    }}
-                    value={password}
-                  />
-                </Form.Group>
-              </Form>
-              <Button
-                content="Login"
-                onClick={async e => {
-                  e.preventDefault()
-                  const response = await axios.post<UserModel>(
-                    'http://localhost:3000/api/auth/login',
-                    { email, password }
-                  )
-                  if (response.status === 200) {
-                    setEmail('')
-                    setPassword('')
-                    updateCurrentUser(response.data)
-                  } else {
-                    window.alert(response.data)
-                  }
-                }}
-              />
-            </Modal.Description>
-          </Modal.Content>
-        </Modal>
+        <>
+          <Modal trigger={<Button>Log In</Button>}>
+            <Modal.Header>Log In</Modal.Header>
+            <Modal.Content>
+              <Modal.Description>
+                <Form size="small">
+                  <Form.Group>
+                    <Form.Input
+                      label="Email"
+                      onChange={({ target: { value } }) => {
+                        setEmail(value)
+                      }}
+                      value={email}
+                    />
+                    <Form.Input
+                      label="Password"
+                      type="password"
+                      onChange={({ target: { value } }) => {
+                        setPassword(value)
+                      }}
+                      value={password}
+                    />
+                  </Form.Group>
+                </Form>
+                <Button
+                  content="Login"
+                  onClick={async e => {
+                    e.preventDefault()
+                    const response = await axios.post<UserModel>(
+                      'http://localhost:3000/api/auth/login',
+                      { email, password }
+                    )
+                    if (response.status === 200) {
+                      setEmail('')
+                      setPassword('')
+                      updateCurrentUser(response.data)
+                    } else {
+                      window.alert(response.data)
+                    }
+                  }}
+                />
+              </Modal.Description>
+            </Modal.Content>
+          </Modal>
+          <Modal trigger={<Button>Sign Up</Button>}>
+            <Modal.Header>Sign Up</Modal.Header>
+            <Modal.Content>
+              <Modal.Description>
+                <Form size="small">
+                  <Form.Group>
+                    <Form.Input
+                      label="Email"
+                      onChange={({ target: { value } }) => {
+                        setEmail(value)
+                      }}
+                      value={email}
+                    />
+                    <Form.Input
+                      label="Password"
+                      type="password"
+                      onChange={({ target: { value } }) => {
+                        setPassword(value)
+                      }}
+                      value={password}
+                    />
+                  </Form.Group>
+                </Form>
+                <Button
+                  content="Sign Up"
+                  onClick={async e => {
+                    e.preventDefault()
+                    const response = await axios.post<UserModel>(
+                      'http://localhost:3000/api/auth/signup',
+                      { email, password }
+                    )
+                    if (response.status === 200) {
+                      setEmail('')
+                      setPassword('')
+                      updateCurrentUser(response.data)
+                    } else {
+                      window.alert(response.data)
+                    }
+                  }}
+                />
+              </Modal.Description>
+            </Modal.Content>
+          </Modal>
+        </>
       ) : (
         <>
           <div style={{ display: 'flex' }}>
