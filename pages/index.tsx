@@ -2,8 +2,8 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import 'semantic-ui-css/semantic.min.css'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { Container, Header as SemanticHeader } from 'semantic-ui-react'
-import Header from '../src/components/Header'
+import { Container, Header } from 'semantic-ui-react'
+import Navbar from '../src/components/Navbar'
 import FileInput from '../src/components/FileInput'
 import { UserProvider, UserConsumer } from '../src/context/UserContext'
 
@@ -13,7 +13,7 @@ const Snippet = (props: any) => {
   if (!file) return null
   return (
     <>
-      <SemanticHeader>{fileName}</SemanticHeader>
+      <Header>{fileName}</Header>
       <SyntaxHighlighter language="javascript">{file}</SyntaxHighlighter>
     </>
   )
@@ -52,7 +52,7 @@ export default function Index() {
       <UserConsumer>
         {(userContext: any) => (
           <>
-            <Header
+            <Navbar
               user={userContext.user}
               updateCurrentUser={userContext.setUser}
             />

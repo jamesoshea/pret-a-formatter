@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import 'semantic-ui-css/semantic.min.css'
 import { Container } from 'semantic-ui-react'
 import { useRouter } from 'next/router'
-import Header from '../../src/components/Header'
+import Navbar from '../../src/components/Navbar'
 import Snippet from '../../src/components/Snippet'
 import { UserProvider, UserConsumer } from '../../src/context/UserContext'
 
@@ -36,7 +36,7 @@ export default function FileId() {
       <UserConsumer>
         {(userContext: any) => (
           <>
-            <Header
+            <Navbar
               user={userContext.user}
               updateCurrentUser={userContext.setUser}
             />

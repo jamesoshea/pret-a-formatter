@@ -1,12 +1,6 @@
 import 'semantic-ui-css/semantic.min.css'
-import {
-  Container,
-  Grid,
-  Header as StyledHeader,
-  Icon,
-  Segment
-} from 'semantic-ui-react'
-import Header from '../src/components/Header'
+import { Container, Grid, Header, Icon, Segment } from 'semantic-ui-react'
+import Navbar from '../src/components/Navbar'
 import { UserProvider, UserConsumer } from '../src/context/UserContext'
 
 export default function About() {
@@ -15,31 +9,31 @@ export default function About() {
       <UserConsumer>
         {(userContext: any) => (
           <>
-            <Header
+            <Navbar
               user={userContext.user}
               updateCurrentUser={userContext.setUser}
             />
             <Container>
-              <StyledHeader as="h2">Features</StyledHeader>
+              <Header as="h2">Features</Header>
               <Grid container columns={3} stackable>
                 <Grid.Column>
                   <Segment basic padded="very" textAlign="center">
                     <Icon name="handshake outline" size="huge" />
-                    <StyledHeader as="h3">Automatically Formatted</StyledHeader>
+                    <Header as="h3">Automatically Formatted</Header>
                     <p>No more bikeshedding</p>
                   </Segment>
                 </Grid.Column>
                 <Grid.Column>
                   <Segment basic padded="very" textAlign="center">
                     <Icon name="key" size="huge" />
-                    <StyledHeader as="h3">Securely Hosted</StyledHeader>
+                    <Header as="h3">Securely Hosted</Header>
                     <p>No-one else sees your snippets</p>
                   </Segment>
                 </Grid.Column>
                 <Grid.Column>
                   <Segment basic padded="very" textAlign="center">
                     <Icon name="user secret" size="huge" />
-                    <StyledHeader as="h3">Use Anonymously</StyledHeader>
+                    <Header as="h3">Use Anonymously</Header>
                     <p>Or logged in...</p>
                   </Segment>
                 </Grid.Column>

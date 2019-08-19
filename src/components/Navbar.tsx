@@ -1,11 +1,12 @@
 import axios from 'axios'
+import Link from 'next/link'
 import { useState } from 'react'
-import { Button, Form, Header as StyledHeader, Modal } from 'semantic-ui-react'
+import { Button, Form, Header, Modal } from 'semantic-ui-react'
 import styled from 'styled-components'
 
-import { UserModel } from '../../src/server/models/auth'
+import { UserModel } from '../server/models/auth'
 
-const HeaderContainer = styled.div`
+const NavbarContainer = styled.div`
   align-items: center;
   background: #444;
   display: flex;
@@ -22,16 +23,28 @@ export default (props: any) => {
   const [password, setPassword] = useState('')
 
   return (
-    <HeaderContainer>
-      <StyledHeader
-        as="p"
-        color="grey"
-        inverted
-        size="large"
-        style={{ height: '36px', lineHeight: '36px', margin: 0 }}
-      >
-        pàf
-      </StyledHeader>
+    <NavbarContainer>
+      <div>
+        <Link href="/">
+          <Header
+            as="a"
+            color="grey"
+            inverted
+            size="large"
+            style={{
+              height: '36px',
+              lineHeight: '36px',
+              margin: '0 10px 0',
+              cursor: 'pointer'
+            }}
+          >
+            pàf
+          </Header>
+        </Link>
+        <Link href="/about">
+          <a>About</a>
+        </Link>
+      </div>
       {!user ? (
         <div style={{ display: 'flex' }}>
           <Modal trigger={<Button>Log In</Button>}>
@@ -123,7 +136,7 @@ export default (props: any) => {
         </div>
       ) : (
         <div style={{ display: 'flex' }}>
-          <StyledHeader
+          <Header
             as="h6"
             color="grey"
             inverted
@@ -134,7 +147,7 @@ export default (props: any) => {
             }}
           >
             {user.email}
-          </StyledHeader>
+          </Header>
           <Button
             content="Logout"
             onClick={async () => {
@@ -144,6 +157,6 @@ export default (props: any) => {
           />
         </div>
       )}
-    </HeaderContainer>
+    </NavbarContainer>
   )
 }
