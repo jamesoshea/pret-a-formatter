@@ -40,7 +40,6 @@ export class UserProvider extends React.Component<
   }
 
   setUser(newUser: Object | null) {
-    console.log(newUser)
     this.setState({
       user: newUser
     })

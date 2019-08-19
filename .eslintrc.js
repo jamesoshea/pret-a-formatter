@@ -16,8 +16,10 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module'
   },
-  plugins: ['react'],
+  plugins: ['react', 'react-hooks'],
   rules: {
-    'space-before-function-paren': 0
+    'space-before-function-paren': 0,
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn'
   }
 }
