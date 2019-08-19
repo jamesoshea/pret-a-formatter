@@ -23,7 +23,13 @@ export default (props: any) => {
 
   return (
     <HeaderContainer>
-      <StyledHeader as="p" color="grey" inverted size="large">
+      <StyledHeader
+        as="p"
+        color="grey"
+        inverted
+        size="large"
+        style={{ height: '36px', lineHeight: '36px', margin: 0 }}
+      >
         pàf
       </StyledHeader>
       {!user ? (
@@ -73,7 +79,16 @@ export default (props: any) => {
       ) : (
         <>
           <div style={{ display: 'flex' }}>
-            <StyledHeader as="h6" color="grey" inverted>
+            <StyledHeader
+              as="h6"
+              color="grey"
+              inverted
+              style={{
+                height: '36px',
+                lineHeight: '36px',
+                margin: '0 10px 0 0'
+              }}
+            >
               {user.email}
             </StyledHeader>
             <Button
