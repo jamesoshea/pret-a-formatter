@@ -1,4 +1,5 @@
 import crypto from 'crypto'
+import nodemailer from 'nodemailer'
 import serverApp from '../../../src/server/app'
 import auth from '../../../src/server/middleware/passport'
 import { User } from '../../../src/server/models/auth'
@@ -9,6 +10,26 @@ app.use(auth)
 
 app.post('*', async (req, res, next) => {
   const { email, password } = req.body
+
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: {
+      user: process.env.EMAIL_USERNAME,
+      pass: process.env.EMAIL_PASSWORD
+    }
+  })
+
+  let info = await transporter.sendMail({
+    from: process.env.EMAIL_USERNAME, // sender address
+    to: email, // list of receivers
+    subject: 'Hello ✔', // Subject line
+    html: '<b>Hello world?</b>' // html body
+  })
+
+  console.log('Message sent: %s', info.messageId)
+
   const salt = 'jfnofoihnoi'
   const hash = crypto.createHmac('sha512', salt)
   hash.update(password)
