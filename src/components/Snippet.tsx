@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { Header } from 'semantic-ui-react'
 
@@ -7,7 +8,11 @@ const Snippet = (props: any) => {
   if (!file) return null
   return (
     <>
-      <Header>{fileName}</Header>
+      <Link href={`/files/${fileName}`}>
+        <a>
+          <Header>{`${fileName}.js`}</Header>
+        </a>
+      </Link>
       <SyntaxHighlighter language="javascript">{file}</SyntaxHighlighter>
     </>
   )

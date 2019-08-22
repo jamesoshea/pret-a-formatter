@@ -12,19 +12,18 @@ export default function FileId() {
   const [formattedFileName, setFormattedFileName] = useState('')
   const router = useRouter()
   const { fileId } = router.query
+  const stringifiedFileId = fileId ? fileId.toString() : ''
 
   useEffect(() => {
-    if (!fileId) {
-      console.log('hello')
+    if (!stringifiedFileId) {
       return
     }
-    console.log(fileId)
     try {
       axios
-        .get(`http://localhost:3000/api/files/${fileId}`)
+        .get(`http://localhost:3000/api/files/${stringifiedFileId}`)
         .then(({ data }) => {
           setFormattedFile(data)
-          setFormattedFileName(`${fileId}.js`)
+          setFormattedFileName(stringifiedFileId)
         })
     } catch (error) {
       console.log(new Error(error))

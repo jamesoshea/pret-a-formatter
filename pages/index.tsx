@@ -1,23 +1,11 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import 'semantic-ui-css/semantic.min.css'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { Container, Header } from 'semantic-ui-react'
-import Navbar from '../src/components/Navbar'
+import { Container } from 'semantic-ui-react'
 import FileInput from '../src/components/FileInput'
+import Navbar from '../src/components/Navbar'
+import Snippet from '../src/components/Snippet'
 import { UserProvider, UserConsumer } from '../src/context/UserContext'
-
-const Snippet = (props: any) => {
-  const { file, fileName } = props
-
-  if (!file) return null
-  return (
-    <>
-      <Header>{fileName}</Header>
-      <SyntaxHighlighter language="javascript">{file}</SyntaxHighlighter>
-    </>
-  )
-}
 
 const Upload = (props: any) => {
   const { setFormattedFile, setFormattedFileName } = props
@@ -32,7 +20,7 @@ const Upload = (props: any) => {
         }
       })
       .then(res => {
-        setFormattedFileName(res.data.fileName)
+        setFormattedFileName(res.data.fileName.replace('.js', ''))
         setFormattedFile(res.data.file)
       })
       .catch(err => {
