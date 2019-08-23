@@ -1,6 +1,7 @@
 import { BuildOptions, DataTypes, Model } from 'sequelize'
 
 import { sequelizeInstance } from './'
+import { File } from './file'
 
 export class UserModel extends Model {
   email!: string
@@ -19,3 +20,5 @@ export const User = <UserStatic>sequelizeInstance.define(
   },
   { tableName: 'users', timestamps: false }
 )
+
+User.hasMany(File)
