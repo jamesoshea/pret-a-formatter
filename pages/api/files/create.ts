@@ -1,14 +1,14 @@
 import jwt from 'jsonwebtoken'
 import { File } from '../../../src/server/models/file'
 
-const { APP_SECRET } = process.env
+const APP_SECRET: string = process.env.APP_SECRET || ''
 
 export default async (req: any, res: any) => {
   try {
-    const { email } = jwt.verify(req.token, APP_SECRET)
+    const user: any = jwt.verify(req.token, APP_SECRET)
     const file = File.create({
       fileName: req.body.fileName,
-      user: email
+      user: user.email
     })
     res.send(file)
   } catch (err) {
