@@ -13,7 +13,7 @@ const Upload = (props: any) => {
 
   const uploadFile = (formData: any) => {
     axios
-      .post('https://pret-a-formatter-backend.now.sh/upload', formData, {
+      .post('/api/files/create', formData, {
         headers: {
           Accept: 'application/json',
           Encoding: 'multipart/form-data'
