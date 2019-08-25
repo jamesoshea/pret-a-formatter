@@ -4,9 +4,7 @@ import { sequelizeInstance } from './'
 import { User } from './auth'
 
 export class FileModel extends Model {
-  email!: string
-  password!: string
-  name!: string
+  fileName!: string
 }
 export type FileStatic = typeof FileModel & {
   new (values?: object, options?: BuildOptions): FileModel

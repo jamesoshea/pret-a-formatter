@@ -21,4 +21,6 @@ export const User = <UserStatic>sequelizeInstance.define(
   { tableName: 'users', timestamps: false }
 )
 
-User.hasMany(File)
+User.hasMany(File, {
+  foreignKey: 'userEmail'
+})

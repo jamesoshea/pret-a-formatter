@@ -11,14 +11,9 @@ const Upload = (props: any) => {
   const { setFormattedFile, setFormattedFileName } = props
   const fileInput = React.createRef()
 
-  const uploadFile = (formData: any) => {
+  const uploadFile = (fileData: any) => {
     axios
-      .post('/api/files/create', formData, {
-        headers: {
-          Accept: 'application/json',
-          Encoding: 'multipart/form-data'
-        }
-      })
+      .post('/api/files/create', fileData, {})
       .then(res => {
         setFormattedFileName(res.data.fileName.replace('.js', ''))
         setFormattedFile(res.data.file)

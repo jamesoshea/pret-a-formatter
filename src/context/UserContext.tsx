@@ -31,10 +31,13 @@ export class UserProvider extends React.Component<
   async componentDidMount() {
     ;(async () => {
       try {
-        const response = await axios.post<UserModel>(
+        const response = await axios.post(
           'http://localhost:3000/api/auth/current_user'
         )
-        this.setUser(response.data)
+        if (response.status === 200) {
+          localStorage.setItem('paf-user-token', response.data.token)
+          this.setUser(response.data.token)
+        }
       } catch (err) {}
     })()
   }
