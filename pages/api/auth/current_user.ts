@@ -1,19 +1,25 @@
 import jwt from 'jsonwebtoken'
 import serverApp from '../../../src/server/app'
 import auth from '../../../src/server/middleware/passport'
-import { UserModel as User } from '../../../src/server/models/auth'
+import { UserModel } from '../../../src/server/models/auth'
+import { File } from '../../../src/server/models/file'
 
 const app = serverApp()
 
 app.use(auth)
 
-app.use(async (req, res) => {
+app.use(async (req: any, res) => {
   try {
     if (req.user) {
-      const { name, email }: User = req.user
-      console.log(`User already logged in: ${name}`)
+      const { name, email }: UserModel = req.user
+      const files = await File.findAll({
+        where: {
+          userEmail: email
+        }
+      })
       const APP_SECRET: string = process.env.APP_SECRET || ''
       return res.json({
+        files,
         name,
         email,
         token: jwt.sign({ name, email }, APP_SECRET)

@@ -21,7 +21,7 @@ export default async (req: any, res: any) => {
 
     await S3PutObjectPromisified(fileName, base64data)
     await File.sync({ force: false })
-    const newFile = File.create({
+    await File.create({
       fileName,
       userEmail: user.email
     })
