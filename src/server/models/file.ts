@@ -1,7 +1,6 @@
 import { BuildOptions, DataTypes, Model } from 'sequelize'
 
 import { sequelizeInstance } from './'
-import { User } from './auth'
 
 export class FileModel extends Model {
   fileName!: string
@@ -12,7 +11,8 @@ export type FileStatic = typeof FileModel & {
 export const File = <FileStatic>sequelizeInstance.define(
   'files',
   {
-    fileName: { type: DataTypes.STRING, primaryKey: true }
+    fileName: { type: DataTypes.STRING, primaryKey: true },
+    userEmail: { type: DataTypes.STRING }
   },
-  { tableName: 'files', timestamps: false }
+  { tableName: 'files' }
 )

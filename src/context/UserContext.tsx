@@ -2,8 +2,6 @@ import axios from 'axios'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { UserModel } from '../../src/server/models/auth'
-
 const UserContext = React.createContext({})
 
 type UserContextProps = {}
@@ -36,7 +34,7 @@ export class UserProvider extends React.Component<
         )
         if (response.status === 200) {
           localStorage.setItem('paf-user-token', response.data.token)
-          this.setUser(response.data.token)
+          this.setUser(response.data)
         }
       } catch (err) {}
     })()

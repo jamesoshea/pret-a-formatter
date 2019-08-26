@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import 'semantic-ui-css/semantic.min.css'
 import { Container } from 'semantic-ui-react'
 import FileInput from '../src/components/FileInput'
+import FileList from '../src/components/FileList'
 import Navbar from '../src/components/Navbar'
 import Snippet from '../src/components/Snippet'
 import { UserProvider, UserConsumer } from '../src/context/UserContext'
@@ -40,6 +41,9 @@ export default function Index() {
               updateCurrentUser={userContext.setUser}
             />
             <Container>
+              <FileList
+                files={userContext.user ? userContext.user.files : []}
+              />
               <Upload
                 setFormattedFile={setFormattedFile}
                 setFormattedFileName={setFormattedFileName}

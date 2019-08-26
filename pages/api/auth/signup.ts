@@ -28,8 +28,6 @@ app.post('*', async (req, res, next) => {
     html: '<b>Hello world?</b>' // html body
   })
 
-  console.log('Message sent: %s', info.messageId)
-
   const salt = 'jfnofoihnoi'
   const hash = crypto.createHmac('sha512', salt)
   hash.update(password)

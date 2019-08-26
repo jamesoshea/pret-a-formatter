@@ -7,7 +7,6 @@ const s3 = new AWS.S3()
 
 const S3GetObjectPromisified = fileName => {
   return new Promise((resolve, reject) => {
-    console.log(fileName)
     const params = {
       Bucket: 'pret-a-formatter',
       Key: fileName
